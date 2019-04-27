@@ -3,5 +3,5 @@ export const EMPTY_MOBILEDOC = {
   markups: [],
   atoms: [],
   cards: [],
-  sections: []
+  sections: [[1, 'p', []]]
 }
