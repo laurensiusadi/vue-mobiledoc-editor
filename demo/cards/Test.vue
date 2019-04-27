@@ -23,3 +23,11 @@ export default {
   }
 }
 </script>
+
+<style>
+.test-card {
+  padding: 0 1rem;
+  border: 1px solid #aaa;
+  border-radius: 10px;
+}
+</style>

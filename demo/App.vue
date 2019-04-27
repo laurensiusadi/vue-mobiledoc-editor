@@ -6,8 +6,10 @@
       :atoms="atoms"
       :cards="cards"
       :cardOptions="cardOptions"
+      :mobiledoc="editorContent"
       @willCreateEditor="willCreate"
       @didCreateEditor="didCreate"
+      @postWasUpdated="editorUpdated"
       ref="editorComponent">
       <EditorToggleButton />
       <EditorToolbar />
@@ -42,14 +44,13 @@ export default {
   data: () => ({
     placeholder: "Start Writing...",
     atoms: [Mention],
-    cards: [compToCard(Test)]
+    cards: [compToCard(Test)],
+    editorContent: EMPTY_MOBILEDOC
   }),
 
   computed: {
-    cardOptions () {
-      return {
-        getEditorVm: () => this.$refs.editorComponent.editorVm
-      }
+    cardOptions() {
+      getEditorVm: () => this.$refs.editorComponent.editorVm
     }
   },
 
@@ -59,6 +60,12 @@ export default {
     },
     didCreate() {
       console.log('did create!')
+    },
+    editorUpdated(payload) {
+      if (payload !== this.editorContent) {
+        this.editorContent = payload
+      }
+      // save editor content
     }
   },
 
@@ -70,3 +77,8 @@ export default {
   }
 }
 </script>
+
+<style>
+@import url('./mobiledoc-kit.css');
+
+</style>
